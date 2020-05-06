@@ -1,11 +1,15 @@
-﻿namespace FlexibleLoggingSystem
+﻿using FlexibleLoggingSystem.Configuration;
+using FlexibleLoggingSystem.Factories;
+using FlexibleLoggingSystem.Products;
+
+namespace FlexibleLoggingSystem
 {
     public static class ApplicationLog
     {
-        private static Logger configuredLogger;
+        private static Logger configuredLogger = null;
 
-        private static Logger Logger 
-        { 
+        private static Logger Logger
+        {
             get
             {
                 if (ApplicationLog.configuredLogger is null)
@@ -17,9 +21,17 @@
             }
         }
 
-        public static void ConfigureLogger(Logger logger)
+        public static void ConfigureLogger(LoggerConfiguration configuration, LoggerFactory[] availableFactories)
         {
-            ApplicationLog.configuredLogger = logger;
+            foreach (LoggerFactory factory in availableFactories)
+            {
+                Logger logger = factory.Create(configuration);
+
+                if (logger != null)
+                {
+                    ApplicationLog.configuredLogger = logger;
+                }
+            }
         }
 
         public static void WriteLog(LogLevel level, string errorMessage, string additionalInfo)

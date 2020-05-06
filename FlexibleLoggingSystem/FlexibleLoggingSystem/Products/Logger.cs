@@ -1,4 +1,4 @@
-﻿namespace FlexibleLoggingSystem
+﻿namespace FlexibleLoggingSystem.Products
 {
     public abstract class Logger
     {

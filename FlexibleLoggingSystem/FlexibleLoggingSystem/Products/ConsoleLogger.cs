@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FlexibleLoggingSystem
+namespace FlexibleLoggingSystem.Products
 {
     public class ConsoleLogger : Logger
     {

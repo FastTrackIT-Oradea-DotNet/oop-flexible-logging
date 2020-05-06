@@ -2,14 +2,13 @@
 using System.IO;
 using System.Text;
 
-namespace FlexibleLoggingSystem
+namespace FlexibleLoggingSystem.Products
 {
     public class TextFileLogger : Logger
     {
         public TextFileLogger()
             : this(string.Empty)
         {
-
         }
 
         public TextFileLogger(string pathToDir)
