@@ -6,9 +6,15 @@ namespace FlexibleLoggingSystem
 {
     public class TextFileLogger : Logger
     {
+        public TextFileLogger()
+            : this(string.Empty)
+        {
+
+        }
+
         public TextFileLogger(string pathToDir)
         {
-            if (!Directory.Exists(pathToDir))
+            if (string.IsNullOrWhiteSpace(pathToDir) || (!Directory.Exists(pathToDir)))
             {
                 pathToDir = Path.GetTempPath();
             }
@@ -21,7 +27,7 @@ namespace FlexibleLoggingSystem
         public override void WriteLog(LogLevel level, string errorMessage, string additionalInfo)
         {
             DateTime nowDate = DateTime.Now;
-            string fileName = $"err{nowDate.Year}{nowDate.Month}{nowDate.Day}.txt";
+            string fileName = $"err{nowDate.Year}{nowDate.Month.ToString().PadLeft(2, '0')}{nowDate.Day.ToString().PadLeft(2, '0')}.txt";
             string fullPath = Path.Combine(this.PathToDir, fileName);
 
             using (StreamWriter sw = File.AppendText(fullPath))

@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FlexibleLoggingSystem
+﻿namespace FlexibleLoggingSystem
 {
     public static class ApplicationLog
     {
         private static Logger configuredLogger;
 
-        public static Logger Logger 
+        private static Logger Logger 
         { 
             get
             {
